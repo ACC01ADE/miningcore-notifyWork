@@ -81,23 +81,23 @@ public class EthereumJob
         var ratio = shareDiff / stratumDifficulty;
         var isBlockCandidate = resultValue <= blockTarget;
 
-        if(!isBlockCandidate && ratio < 0.99)
-        {
-            // check if share matched the previous difficulty from before a vardiff retarget
-            if(context.VarDiff?.LastUpdate != null && context.PreviousDifficulty.HasValue)
-            {
-                ratio = shareDiff / context.PreviousDifficulty.Value;
+//         if(!isBlockCandidate && ratio < 0.99)
+//         {
+//             // check if share matched the previous difficulty from before a vardiff retarget
+//             if(context.VarDiff?.LastUpdate != null && context.PreviousDifficulty.HasValue)
+//             {
+//                 ratio = shareDiff / context.PreviousDifficulty.Value;
 
-                if(ratio < 0.99)
-                    throw new StratumException(StratumError.LowDifficultyShare, $"low difficulty share ({shareDiff})");
+//                 if(ratio < 0.99)
+//                     throw new StratumException(StratumError.LowDifficultyShare, $"low difficulty share ({shareDiff})");
 
-                // use previous difficulty
-                stratumDifficulty = context.PreviousDifficulty.Value;
-            }
+//                 // use previous difficulty
+//                 stratumDifficulty = context.PreviousDifficulty.Value;
+//             }
 
-            else
-                throw new StratumException(StratumError.LowDifficultyShare, $"low difficulty share ({shareDiff})");
-        }
+//             else
+//                 throw new StratumException(StratumError.LowDifficultyShare, $"low difficulty share ({shareDiff})");
+//         }
 
         var share = new Share
         {
